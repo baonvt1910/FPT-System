@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="849ca323ea8a452ab40869fb88b4b49b" Name="Diagram1" ZoomLevel="84">
+        <EntityTypeShape EntityType="Model1.CATEGORY" Width="1.5" PointX="1.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.COURSE" Width="1.5" PointX="3.375" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.Instructor" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.sysdiagram" Width="1.5" PointX="8.375" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.Table" Width="1.5" PointX="6" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model1.TOPIC" Width="1.5" PointX="5.375" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="Model1.FK_dbo_COURSE_dbo_CATEGORY_CategoryId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model1.FK_dbo_TOPIC_dbo_COURSE_CourseId" ManuallyRouted="false" />
+        <AssociationConnector Association="Model1.FK_dbo_TOPIC_dbo_COURSE_InstructorId" />
+        <EntityTypeShape EntityType="Model1.C__MigrationHistory" Width="1.5" PointX="0.875" PointY="4.375" />
+        <EntityTypeShape EntityType="Model1.AspNetRole" Width="1.5" PointX="0.75" PointY="8.5" />
+        <EntityTypeShape EntityType="Model1.AspNetUserClaim" Width="1.5" PointX="5.25" PointY="7" />
+        <EntityTypeShape EntityType="Model1.AspNetUserLogin" Width="1.5" PointX="5.25" PointY="9.75" />
+        <EntityTypeShape EntityType="Model1.AspNetUser" Width="1.5" PointX="3" PointY="7.375" />
+        <AssociationConnector Association="Model1.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Model1.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="Model1.FK_Table_Instructor" />
+        <AssociationConnector Association="Model1.FK_Table_TOPIC" />
+        <AssociationConnector Association="Model1.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
