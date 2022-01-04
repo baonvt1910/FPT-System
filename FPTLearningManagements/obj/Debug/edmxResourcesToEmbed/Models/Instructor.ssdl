@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Instructor">
+    <Key>
+      <PropertyRef Name="InstructorId" />
+    </Key>
+    <Property Name="InstructorId" Type="int" Nullable="false" />
+    <Property Name="InstructorName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="InstructorEmail" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="InstructorId" Type="int" Nullable="false" />
+    <Property Name="TopicId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TOPIC">
+    <Key>
+      <PropertyRef Name="TopicId" />
+    </Key>
+    <Property Name="TopicId" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="TopicName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Table_Instructor">
+    <End Role="Instructor" Type="Self.Instructor" Multiplicity="1" />
+    <End Role="Table" Type="Self.Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="InstructorId" />
+      </Principal>
+      <Dependent Role="Table">
+        <PropertyRef Name="InstructorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_TOPIC">
+    <End Role="TOPIC" Type="Self.TOPIC" Multiplicity="1" />
+    <End Role="Table" Type="Self.Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TOPIC">
+        <PropertyRef Name="TopicId" />
+      </Principal>
+      <Dependent Role="Table">
+        <PropertyRef Name="TopicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="Instructor" EntityType="Self.Instructor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TOPIC" EntityType="Self.TOPIC" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Table_Instructor" Association="Self.FK_Table_Instructor">
+      <End Role="Instructor" EntitySet="Instructor" />
+      <End Role="Table" EntitySet="Table" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_TOPIC" Association="Self.FK_Table_TOPIC">
+      <End Role="TOPIC" EntitySet="TOPIC" />
+      <End Role="Table" EntitySet="Table" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

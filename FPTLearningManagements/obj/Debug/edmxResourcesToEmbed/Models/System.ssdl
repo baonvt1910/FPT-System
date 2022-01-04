@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="COURSE">
+    <Key>
+      <PropertyRef Name="CourseId" />
+    </Key>
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="CourseName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TOPIC">
+    <Key>
+      <PropertyRef Name="TopicId" />
+    </Key>
+    <Property Name="TopicId" Type="int" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="false" />
+    <Property Name="TopicName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Class" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_COURSE_dbo_CATEGORY_CategoryId">
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="COURSE" Type="Self.COURSE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CATEGORY">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="COURSE">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_TOPIC_dbo_COURSE_CourseId">
+    <End Role="COURSE" Type="Self.COURSE" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="TOPIC" Type="Self.TOPIC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COURSE">
+        <PropertyRef Name="CourseId" />
+      </Principal>
+      <Dependent Role="TOPIC">
+        <PropertyRef Name="CourseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SystemModelStoreContainer">
+    <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="COURSE" EntityType="Self.COURSE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TOPIC" EntityType="Self.TOPIC" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_COURSE_dbo_CATEGORY_CategoryId" Association="Self.FK_dbo_COURSE_dbo_CATEGORY_CategoryId">
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+      <End Role="COURSE" EntitySet="COURSE" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_TOPIC_dbo_COURSE_CourseId" Association="Self.FK_dbo_TOPIC_dbo_COURSE_CourseId">
+      <End Role="COURSE" EntitySet="COURSE" />
+      <End Role="TOPIC" EntitySet="TOPIC" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Instructor">
+    <Key>
+      <PropertyRef Name="InstructorId" />
+    </Key>
+    <Property Name="InstructorId" Type="Int32" Nullable="false" />
+    <Property Name="InstructorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="InstructorEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tables" Relationship="Self.FK_Table_Instructor" FromRole="Instructor" ToRole="Table" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="InstructorId" Type="Int32" Nullable="false" />
+    <Property Name="TopicId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Instructor" Relationship="Self.FK_Table_Instructor" FromRole="Table" ToRole="Instructor" />
+    <NavigationProperty Name="TOPIC" Relationship="Self.FK_Table_TOPIC" FromRole="Table" ToRole="TOPIC" />
+  </EntityType>
+  <EntityType Name="TOPIC">
+    <Key>
+      <PropertyRef Name="TopicId" />
+    </Key>
+    <Property Name="TopicId" Type="Int32" Nullable="false" />
+    <Property Name="CourseId" Type="Int32" Nullable="false" />
+    <Property Name="TopicName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Class" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Tables" Relationship="Self.FK_Table_TOPIC" FromRole="TOPIC" ToRole="Table" />
+  </EntityType>
+  <Association Name="FK_Table_Instructor">
+    <End Role="Instructor" Type="Self.Instructor" Multiplicity="1" />
+    <End Role="Table" Type="Self.Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Instructor">
+        <PropertyRef Name="InstructorId" />
+      </Principal>
+      <Dependent Role="Table">
+        <PropertyRef Name="InstructorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Table_TOPIC">
+    <End Role="TOPIC" Type="Self.TOPIC" Multiplicity="1" />
+    <End Role="Table" Type="Self.Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TOPIC">
+        <PropertyRef Name="TopicId" />
+      </Principal>
+      <Dependent Role="Table">
+        <PropertyRef Name="TopicId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InstructorEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Instructors" EntityType="Self.Instructor" />
+    <EntitySet Name="Tables" EntityType="Self.Table" />
+    <EntitySet Name="TOPICs" EntityType="Self.TOPIC" />
+    <AssociationSet Name="FK_Table_Instructor" Association="Self.FK_Table_Instructor">
+      <End Role="Instructor" EntitySet="Instructors" />
+      <End Role="Table" EntitySet="Tables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Table_TOPIC" Association="Self.FK_Table_TOPIC">
+      <End Role="TOPIC" EntitySet="TOPICs" />
+      <End Role="Table" EntitySet="Tables" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
