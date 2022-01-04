@@ -1,0 +1,45 @@
+﻿
+@model IEnumerable<FPTLearningManagement.Models.AspNetUser>
+
+@{
+    ViewBag.Title = "Account Management";
+}
+
+<h2>Account</h2>
+
+<p>
+    @Html.ActionLink("Create Account", "Register")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.PasswordHash)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.PasswordHash)
+            </td>
+            
+        </tr>
+    }
+
+</table>
+<style>
+    h2 {
+        text-align: center;
+    }
+</style>

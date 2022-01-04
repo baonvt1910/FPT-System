@@ -1,0 +1,56 @@
+﻿@model IEnumerable<FPTLearningManagement.Models.TOPIC>
+
+@{
+    ViewBag.Title = "Topic";
+}
+
+<h2>Topic</h2>
+
+<p>
+    @Html.ActionLink("Create Topic", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TopicName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Instructor.InstructorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.COURSE.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Class)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TopicName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Instructor.InstructorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.COURSE.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Class)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.TopicId }, new { @class = "edit" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TopicId }, new { @class = "edit" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TopicId }, new { @class = "edit" })
+        </td>
+    </tr>
+}
+
+</table>
+<style>
+    h2 {
+        text-align: center;
+    }
+</style>

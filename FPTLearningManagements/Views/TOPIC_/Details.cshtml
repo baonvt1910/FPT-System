@@ -1,0 +1,55 @@
+﻿@model FPTLearningManagement.Models.TOPIC
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TOPIC</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TopicName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TopicName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Class)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Class)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COURSE.CourseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COURSE.CourseName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Instructor.InstructorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Instructor.InstructorName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TopicId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<style>
+    h2 {
+        text-align: center;
+    }
+</style>
